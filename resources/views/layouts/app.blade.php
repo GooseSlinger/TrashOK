@@ -8,7 +8,13 @@
     <title>@yield('title')</title>
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/css/download.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/download.css', 'resources/js/app.js', 'resources/css/fancybox.css', 'resources/css/style.css'])
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/> --}}
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+    <style>
+        
+    </style>
 
 </head>
 
@@ -24,9 +30,15 @@
                         </a>
 						<nav role="navigation" class="header-nav-menu-wrapper w-nav-menu">
 							<ul role="list" class="header-nav-menu-list">
-								<li class="header-nav-list-item left"> <a href="#" aria-current="page" class="header-nav-link w-nav-link w--current">Главная</a> </li>
-								<li class="header-nav-list-item left"> <a href="#" class="header-nav-link w-nav-link">Заказать услугу</a> </li>
-								<li class="header-nav-list-item left"> <a href="#" class="header-nav-link w-nav-link">Для работников</a> </li>
+								<li class="header-nav-list-item left"> 
+                                    <a href="#" aria-current="page" class="header-nav-link w-nav-link w--current">Главная</a> 
+                                </li>
+								<li class="header-nav-list-item left"> 
+                                    <a href="#" class="header-nav-link w-nav-link">Заказать услугу</a> 
+                                </li>
+								<li class="header-nav-list-item left"> 
+                                    <a href="#" class="header-nav-link w-nav-link">Для работников</a> 
+                                </li>
 								<li class="header-nav-list-item left"> </li>
 								<li class="header-nav-list-item show-in-tablet _100-tablet"> 
                                     <a href="#" class="btn-primary small sub-menu w-button">Вход / Регистрация</a> 
@@ -38,8 +50,8 @@
 						<div class="hamburger-menu-wrapper w-nav-button">
 							<div class="hamburger-menu-bar top"></div>
 							<div class="hamburger-menu-bar bottom"></div>
-						{{-- </div>
-						<div data-node-type="commerce-cart-wrapper" data-w-id="e9eaee57-7890-1b1c-601f-9592d0a25697" data-open-product="" data-wf-cart-type="modal" data-wf-cart-query="query Dynamo2 {}" data-wf-page-link-href-prefix="" class="w-commerce-commercecartwrapper cart-button-wrapper">
+						</div>
+						{{-- <div data-node-type="commerce-cart-wrapper" data-w-id="e9eaee57-7890-1b1c-601f-9592d0a25697" data-open-product="" data-wf-cart-type="modal" data-wf-cart-query="query Dynamo2 {}" data-wf-page-link-href-prefix="" class="w-commerce-commercecartwrapper cart-button-wrapper">
 							<a href="home.html#" data-node-type="commerce-cart-open-link" data-w-id="e9eaee57-7890-1b1c-601f-9592d0a25698" class="w-commerce-commercecartopenlink cart-button w-inline-block" role="button" aria-haspopup="dialog" aria-label="Open cart"> </a>
 							<div data-node-type="commerce-cart-container-wrapper" style="display:none" class="w-commerce-commercecartcontainerwrapper w-commerce-commercecartcontainerwrapper--cartType-modal cart-wrapper">
 								<div data-node-type="commerce-cart-container" role="dialog" class="w-commerce-commercecartcontainer cart-container">
@@ -123,7 +135,40 @@
 								</div>
 							</div>
 						</div>  --}}
-                        <a href="#" class="btn-primary small header-btn-hidde-on-mb w-button">Вход / Регистрация</a> 
+                        {{-- <a href="#" class="btn-primary small header-btn-hidde-on-mb w-button">Вход / Регистрация</a>  --}}
+                        <button id="mainAuthBtn" data-fancybox data-src="#authModal" class="btn-primary small header-btn-hidde-on-mb w-button">Вход / Регистрация</button>
+                        <div id="authModal" style="display:none" class="authModal">
+                            <form>
+                                <div id="firstStageAuth" class="authForm">
+                                    <h2 class="headerModal mb-12">Вход / Регистрация</h2>
+                                    <div class="mb-10">
+                                        <p class="textModal colorGreenSite mb-5">Телефон</p>
+                                        <input class="inputAuth" type="text" value="" />
+                                    </div>
+                                    <div id="btnContinueStep1" class="btn-primary small w-button">Далее</div>
+                                </div>
+                                <div id="secondStageAuth" class="authForm hide">
+                                    <h2 class="headerModal mb-12">Регистрация</h2>
+                                    <div class="mb-5">
+                                        <p class="textModal colorGreenSite mb-5">Имя</p>
+                                        <input class="inputAuth" type="text" value="" />
+                                    </div>
+                                    <div class="mb-10">
+                                        <p class="textModal colorGreenSite mb-5">Телефон</p>
+                                        <input class="inputAuth" type="text" value="" />
+                                    </div>
+                                    <div id="btnContinueStep2" class="btn-primary small w-button">Далее</div>
+                                </div>
+                                <div id="thirdStageAuth" class="authForm hide">
+                                    <h2 class="headerModal mb-12">На ваш номер отправили код</h2>
+                                    <div class="mb-5">
+                                        <p class="textModal colorGreenSite mb-5">Введите код</p>
+                                        <input class="inputAuth" type="text" value="" />
+                                    </div>
+                                    <div class="btn-primary small w-button">Регистрация</div>
+                                </div>
+                            </form>
+                        </div>                          
                     </div>
 				</div>
 			</div>
@@ -241,8 +286,13 @@
                 </div>
             </div>
         </footer>
-        @vite(['resources/js/download/jquery.js', 'resources/js/download/webflow.js'])
     </div>
+    @vite(['resources/js/download/jquery.js', 'resources/js/download/webflow.js'])
+    <script>
+        Fancybox.bind("[data-fancybox]", {
+            // Your custom options
+        });
+    </script>
 </body>
 
 </html>
